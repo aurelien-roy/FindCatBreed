@@ -4,7 +4,7 @@ Find Cat Breed is an iOS 13+ app which let you find the breed of a cat by pointi
 
 ## App demonstration
 
-![App video](demo.gif)
+![App video](app_demo.gif)
 
 ## How does it work?
 
