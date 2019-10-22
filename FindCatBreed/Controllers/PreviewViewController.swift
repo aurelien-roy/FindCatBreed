@@ -18,14 +18,25 @@ class PreviewViewController: UIViewController, AVCapturePhotoCaptureDelegate, AV
 
     @IBOutlet var shapeView: UIView!
     @IBOutlet var animatedNoticeView: AnimatedNoticeFrame!
+    @IBOutlet var galleryButton: UIImageView!
     
     @objc var cameraDevice : AVCaptureDevice?
     
     var videoOutput : AVCaptureVideoDataOutput!
     var statusBarHidden = false
     var orientation : AVCaptureVideoOrientation?
+    var pickerController: UIImagePickerController?
     
-    var isLive : Bool = false
+    var isViewActive : Bool = false
+    var isUsingGallery : Bool = false {
+        didSet {
+            if self.isUsingGallery {
+                animatedNoticeView!.notice(nil)
+            } else {
+                animatedNoticeView!.notice("Pointez la caméra vers un chat")
+            }
+        }
+    }
     
     var analyzer: CatAnalyzer!
     
@@ -63,6 +74,13 @@ class PreviewViewController: UIViewController, AVCapturePhotoCaptureDelegate, AV
         } catch {
             fatalError("Unable to initialize CatAnalyzer")
         }
+        
+        pickerController = UIImagePickerController()
+        pickerController!.delegate = self
+        pickerController!.allowsEditing = false
+        pickerController!.mediaTypes = ["public.image"]
+        pickerController!.sourceType = .photoLibrary
+        
     }
     
     @objc func applicationDidBecomeActive(_ notification: NSNotification){
@@ -153,6 +171,10 @@ class PreviewViewController: UIViewController, AVCapturePhotoCaptureDelegate, AV
     
     func captureOutput(_ output: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
         
+        guard !isUsingGallery && isViewActive else {
+            return
+        }
+        
         let imgbuffer = CMSampleBufferGetImageBuffer(sampleBuffer)
         connection.videoOrientation = .portrait
         
@@ -176,9 +198,13 @@ class PreviewViewController: UIViewController, AVCapturePhotoCaptureDelegate, AV
     private func processDetectionResults(_ boxs: [CGRect], capture_size: CGSize, image: CIImage) {
         self.drawVisionSquares(boxs: boxs, videoSize: capture_size)
         
-        if boxs.count != 1 || !self.isLive {
+        if boxs.count != 1 || !self.isViewActive || self.isUsingGallery {
             self.successiveFramesWithOneCat = 0
             self.intermediateResults.removeAll()
+            
+            if self.isUsingGallery {
+                return
+            }
             
             if(boxs.count == 0) {
                 self.animatedNoticeView!.notice("Pointez la caméra vers un chat")
@@ -190,30 +216,42 @@ class PreviewViewController: UIViewController, AVCapturePhotoCaptureDelegate, AV
             self.successiveFramesWithOneCat += 1
         }
         
+        guard isViewActive else {
+            return
+        }
+        
         // Wait for stabilization
         if (
             (self.successiveFramesWithOneCat-1) % self.FRAMES_BETWEEN_CAPTURES == 0 &&
                 self.successiveFramesWithOneCat <= self.FRAMES_BETWEEN_CAPTURES * (self.REQUIRED_CAPTURES - 1) + 1 // self.FRAMES_BETWEEN_CAPTURES
             )  {
             
-            debugPrint("runing task \(self.successiveFramesWithOneCat)")
             let croppedImage = self.cropImageWithRect(image, rect: boxs.first!)
             
             self.analyzer.createClassificationTask(from: CIImage(cgImage: croppedImage)){ results in
                 DispatchQueue.main.async {
                     self.intermediateResults.append(results)
                     
-                    if(self.intermediateResults.count >= self.REQUIRED_CAPTURES) {
+                    if(self.intermediateResults.count >= self.REQUIRED_CAPTURES && self.isViewActive) {
+                        self.isViewActive = false
                         self.showResults(
                             self.analyzer.mergeResults(self.intermediateResults),
-                        image: croppedImage)
+                        image: UIImage(cgImage: croppedImage))
                     }
                 }
             }
         }
     }
     
-    private func showResults(_ results: [(String, Float)], image: CGImage) {
+    
+    @IBAction func onGalleryPress(_ sender: UIButton) {
+        self.isUsingGallery = true
+        self.pickerController?.modalPresentationStyle = .overCurrentContext
+        self.navigationController?.present(self.pickerController!, animated: true)
+        
+    }
+    
+    private func showResults(_ results: [(String, Float)], image: UIImage) {
         let resultController = ResultViewController.storyboardInstance()!
         
         
@@ -223,7 +261,6 @@ class PreviewViewController: UIViewController, AVCapturePhotoCaptureDelegate, AV
     }
     
     private func cropImageWithRect(_ image: CIImage, rect: CGRect) -> CGImage {
-        
         let biggerRect = rect.insetBy(dx: -0.2*rect.width, dy: -0.2*rect.height)
         
         let vw = image.extent.width, vh = image.extent.height
@@ -287,19 +324,16 @@ class PreviewViewController: UIViewController, AVCapturePhotoCaptureDelegate, AV
     }
     
     override func viewWillDisappear(_ animated: Bool) {
-        
         super.viewWillDisappear(animated)
         
         statusBarHidden = false
-        isLive = false
+        isViewActive = false
         
         // Show the Navigation Bar
         self.navigationController?.setNavigationBarHidden(false, animated: animated)
     }
     
     override func viewDidDisappear(_ animated: Bool) {
-        debugPrint("did disappear")
-        
         super.viewDidDisappear(animated)
         guard let session = captureSession else {
             return
@@ -307,7 +341,8 @@ class PreviewViewController: UIViewController, AVCapturePhotoCaptureDelegate, AV
         
         session.stopRunning()
         
-        isLive = false
+        isViewActive = false
+        isUsingGallery = false
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -315,7 +350,7 @@ class PreviewViewController: UIViewController, AVCapturePhotoCaptureDelegate, AV
         
         self.statusBarHidden = true
         
-        isLive = false
+        isViewActive = false
         
         UIView.animate(withDuration: 0.35) {
             self.setNeedsStatusBarAppearanceUpdate()
@@ -331,11 +366,71 @@ class PreviewViewController: UIViewController, AVCapturePhotoCaptureDelegate, AV
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        isLive = true
+        isViewActive = true
 
         animatedNoticeView!.notice("Pointez la caméra vers un chat")
-        
     }
         
     
+}
+
+
+extension PreviewViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIAdaptivePresentationControllerDelegate{
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        self.isUsingGallery = false
+        picker.dismiss(animated: true)
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        
+        guard let image = info[.originalImage] as? UIImage else {
+            picker.dismiss(animated: true)
+            self.isUsingGallery = false
+            return
+        }
+        
+        let ciimage = image.ciImage != nil ? image.ciImage! : CIImage(cgImage: image.cgImage!)
+        
+        analyzer.createDetectionTask(from: ciimage){ boxs in
+            
+            DispatchQueue.main.async {
+                
+                guard boxs.count == 1 else {
+                    
+                    let title: String, message: String
+                    
+                    if boxs.count == 0 {
+                        title = "Aucun chat n'a été détecté sur cette photo"
+                        message = "Essayez une photo avec le chat de face et de bonnes conditions de luminosité."
+                    } else {
+                        title = "Plusieurs chats ont été détectés sur cette photo"
+                        message = "Veuillez sélectionner une photo avec un seul chat présent"
+                    }
+                    
+                    let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+                    let OKAction = UIAlertAction(title: "Ok", style: .default)
+                    
+                    alert.addAction(OKAction)
+                    picker.present(alert, animated: true)
+                    
+                    return
+                }
+                
+                picker.dismiss(animated: true)
+                
+                let croppedImage = self.cropImageWithRect(ciimage, rect: boxs.first!)
+                
+                self.analyzer.createClassificationTask(from: CIImage(cgImage: croppedImage)){ results in
+                    DispatchQueue.main.async {
+                        self.showResults(
+                            results,
+                            image: image
+                        )
+                    }
+                }
+            }
+        }
+        
+    }
 }

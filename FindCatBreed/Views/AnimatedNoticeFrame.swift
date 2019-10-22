@@ -33,7 +33,7 @@ class AnimatedNoticeFrame: UIView {
         layer.masksToBounds = true
     }
     
-    public func notice(_ message: String) {
+    public func notice(_ message: String?) {
         
         if(currentLabel?.text == message) {
             return
@@ -46,7 +46,11 @@ class AnimatedNoticeFrame: UIView {
             dismissMessage(toDismiss, inverted: true)
         } else {
             dismissMessage(currentLabel)
-            spawnMessage(message)
+            
+            if let m = message {
+                spawnMessage(m)
+            }
+            
         }
         
         

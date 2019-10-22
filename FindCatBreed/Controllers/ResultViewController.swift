@@ -13,12 +13,11 @@ import Vision
 
 class ResultViewController : UIViewController{
     
-    var image : CGImage!
+    var image : UIImage!
     
     var results : CatAnalyzer.ClassificationResult = []
     
     private var resultTableController: ResultTableViewController!
-    @IBOutlet var imageView: UIImageView!
     
     
     static func storyboardInstance() -> ResultViewController? {

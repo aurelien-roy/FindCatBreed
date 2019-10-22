@@ -25,7 +25,9 @@
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSCameraUsageDescription</key>
-	<string>Capturer des photos de votre chat pour déterminer sa race.</string>
+	<string>Taking a photo of a cat and detect its breed.</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Importing photo of cat to detect its breed?</string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>

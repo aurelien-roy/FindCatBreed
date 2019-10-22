@@ -140,9 +140,9 @@ class ResultTableViewController: UITableViewController{
         }
     }
     
-    public func populate(results: CatAnalyzer.ClassificationResult, image: CGImage){
+    public func populate(results: CatAnalyzer.ClassificationResult, image: UIImage){
         self.results = results
-        self.previewImage = UIImage(cgImage: image)
+        self.previewImage = image
         tableView.reloadData()
     }
     

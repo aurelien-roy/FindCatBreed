@@ -26,15 +26,37 @@
         <!--Camera-->
         <scene sceneID="AJz-3j-BIv">
             <objects>
-                <viewController storyboardIdentifier="camera" title="Camera" id="yGy-Gq-L0e" customClass="PreviewViewController" customModule="LearningSwift" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" restorationIdentifier="PreviewView" id="8FY-wS-GKA" customClass="PreviewView" customModule="LearningSwift" customModuleProvider="target">
+                <viewController storyboardIdentifier="camera" title="Camera" id="yGy-Gq-L0e" customClass="PreviewViewController" customModule="FindCatBreed" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" restorationIdentifier="PreviewView" id="8FY-wS-GKA" customClass="PreviewView" customModule="FindCatBreed" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FvH-Xf-BCH">
                                 <rect key="frame" x="0.0" y="44" width="320" height="524"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7rD-dg-wvA">
+                                        <rect key="frame" x="16" y="475" width="37" height="33"/>
+                                        <accessibility key="accessibilityConfiguration" hint="Pick a photo from the gallery" label="Gallery"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="37" id="Gqc-nZ-vcr"/>
+                                            <constraint firstAttribute="height" constant="33" id="qx9-AD-zA1"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="18"/>
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <state key="normal" image="photo.fill.on.rectangle.fill" catalog="system">
+                                            <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="large"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="onGalleryPress:" destination="yGy-Gq-L0e" eventType="primaryActionTriggered" id="2XR-ho-eLF"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="7rD-dg-wvA" firstAttribute="leading" secondItem="FvH-Xf-BCH" secondAttribute="leading" constant="16" id="Ldc-2a-GNu"/>
+                                    <constraint firstAttribute="bottom" secondItem="7rD-dg-wvA" secondAttribute="bottom" constant="16" id="dgL-nm-X7D"/>
+                                </constraints>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8Wh-1u-ojt" customClass="AnimatedNoticeFrame" customModule="LearningSwift" customModuleProvider="target">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8Wh-1u-ojt" customClass="AnimatedNoticeFrame" customModule="FindCatBreed" customModuleProvider="target">
                                 <rect key="frame" x="8" y="405" width="304" height="128"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <constraints>
@@ -72,8 +94,8 @@
         <!--Résultats-->
         <scene sceneID="YTt-QY-sJn">
             <objects>
-                <viewController storyboardIdentifier="resultsController" title="Résultats" id="7lv-hO-ueb" customClass="ResultViewController" customModule="LearningSwift" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" restorationIdentifier="PreviewView" id="SR7-On-jRU" customClass="PreviewView" customModule="LearningSwift" customModuleProvider="target">
+                <viewController storyboardIdentifier="resultsController" title="Résultats" id="7lv-hO-ueb" customClass="ResultViewController" customModule="FindCatBreed" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" restorationIdentifier="PreviewView" id="SR7-On-jRU" customClass="PreviewView" customModule="FindCatBreed" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -102,13 +124,13 @@
         <!--Result Table View Controller-->
         <scene sceneID="rih-Do-1AH">
             <objects>
-                <tableViewController id="fCa-v1-sL4" customClass="ResultTableViewController" customModule="LearningSwift" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="fCa-v1-sL4" customClass="ResultTableViewController" customModule="FindCatBreed" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="FmE-Ua-6Is">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="524"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" accessoryType="detailButton" indentationWidth="10" reuseIdentifier="BreedCell" rowHeight="53" id="MVZ-Fz-NWQ" customClass="BreedCell" customModule="LearningSwift" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" accessoryType="detailButton" indentationWidth="10" reuseIdentifier="BreedCell" rowHeight="53" id="MVZ-Fz-NWQ" customClass="BreedCell" customModule="FindCatBreed" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="320" height="53"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="MVZ-Fz-NWQ" id="yNx-Ca-Wmv">
@@ -121,7 +143,7 @@
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="687-ew-W5Y" customClass="ConfidenceBar" customModule="LearningSwift" customModuleProvider="target">
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="687-ew-W5Y" customClass="ConfidenceBar" customModule="FindCatBreed" customModuleProvider="target">
                                             <rect key="frame" x="16" y="34" width="256" height="7"/>
                                             <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                             <constraints>
@@ -143,7 +165,7 @@
                                     <outlet property="confidenceBar" destination="687-ew-W5Y" id="fGA-ue-8Lx"/>
                                 </connections>
                             </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="PreviewCell" rowHeight="200" id="106-oU-nP0" customClass="PreviewCell" customModule="LearningSwift" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="PreviewCell" rowHeight="200" id="106-oU-nP0" customClass="PreviewCell" customModule="FindCatBreed" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="81" width="320" height="200"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="106-oU-nP0" id="oXS-bK-wZH">
@@ -183,4 +205,7 @@
             <point key="canvasLocation" x="1428.75" y="255.63380281690141"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="photo.fill.on.rectangle.fill" catalog="system" width="64" height="48"/>
+    </resources>
 </document>
