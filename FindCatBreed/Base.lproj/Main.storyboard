@@ -79,7 +79,7 @@
                         <viewLayoutGuide key="safeArea" id="lU7-xH-gjx"/>
                     </view>
                     <navigationItem key="navigationItem" id="k9f-nB-WLs">
-                        <barButtonItem key="backBarButtonItem" title="Caméra" id="UJQ-Y9-EIy"/>
+                        <barButtonItem key="backBarButtonItem" title="Camera" id="UJQ-Y9-EIy"/>
                     </navigationItem>
                     <connections>
                         <outlet property="animatedNoticeView" destination="8Wh-1u-ojt" id="yZ1-Zy-d7C"/>
@@ -91,10 +91,10 @@
             </objects>
             <point key="canvasLocation" x="-296.25" y="32.74647887323944"/>
         </scene>
-        <!--Résultats-->
+        <!--Results-->
         <scene sceneID="YTt-QY-sJn">
             <objects>
-                <viewController storyboardIdentifier="resultsController" title="Résultats" id="7lv-hO-ueb" customClass="ResultViewController" customModule="FindCatBreed" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="resultsController" title="Results" id="7lv-hO-ueb" customClass="ResultViewController" customModule="FindCatBreed" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" restorationIdentifier="PreviewView" id="SR7-On-jRU" customClass="PreviewView" customModule="FindCatBreed" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -137,14 +137,14 @@
                                     <rect key="frame" x="0.0" y="0.0" width="280" height="53"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ElG-do-ZQO">
-                                            <rect key="frame" x="16" y="11" width="256" height="21"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ElG-do-ZQO">
+                                            <rect key="frame" x="16" y="11" width="256" height="0.0"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="687-ew-W5Y" customClass="ConfidenceBar" customModule="FindCatBreed" customModuleProvider="target">
-                                            <rect key="frame" x="16" y="34" width="256" height="7"/>
+                                            <rect key="frame" x="16" y="13" width="256" height="7"/>
                                             <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="7" id="mDI-Gm-iR1"/>

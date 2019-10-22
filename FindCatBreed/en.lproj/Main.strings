@@ -1,0 +1,15 @@
+
+/* Class = "UIViewController"; title = "Résultats"; ObjectID = "7lv-hO-ueb"; */
+"7lv-hO-ueb.title" = "Results";
+
+/* Class = "UIButton"; accessibilityHint = "Pick a photo from the gallery"; ObjectID = "7rD-dg-wvA"; */
+"7rD-dg-wvA.accessibilityHint" = "Pick a photo from the photo library";
+
+/* Class = "UIButton"; accessibilityLabel = "Gallery"; ObjectID = "7rD-dg-wvA"; */
+"7rD-dg-wvA.accessibilityLabel" = "Photo library";
+
+/* Class = "UIBarButtonItem"; title = "Caméra"; ObjectID = "UJQ-Y9-EIy"; */
+"UJQ-Y9-EIy.title" = "Camera";
+
+/* Class = "UIViewController"; title = "Camera"; ObjectID = "yGy-Gq-L0e"; */
+"yGy-Gq-L0e.title" = "Camera";

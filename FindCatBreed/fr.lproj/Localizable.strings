@@ -1,0 +1,20 @@
+/* 
+  Localizable.strings
+  FindCatBreed
+
+  Created by Aurélien Roy on 22/10/2019.
+  Copyright © 2019 Aurélien Roy. All rights reserved.
+*/
+
+"Point the camera at a cat" = "Pointez votre appareil vers un chat";
+"There is more than one cat" = "Il y a plus d'un chat";
+"Hold on a moment" = "Maintenez un instant";
+
+"No cat was detected in this photo" = "Aucun chat détecté sur cette photo";
+"Try a photo with the cat from the front and good light conditions." = "Essayez avec une photo montrant un chat de face et dans de bonnes conditions de luminosité.";
+"More than one cat has been detected in this photo" = "Plus d'un chat a été détecté sur cette photo.";
+"Please select a photo with only one cat in it." = "Veuillez sélectionner une photo ne comportant qu'un seul chat.";
+
+
+"Required authorization" = "Required authorization";
+"Please allow the use of the camera in the settings." = "Please allow the use of the camera in the settings.";

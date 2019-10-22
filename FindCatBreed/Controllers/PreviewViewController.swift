@@ -33,7 +33,7 @@ class PreviewViewController: UIViewController, AVCapturePhotoCaptureDelegate, AV
             if self.isUsingGallery {
                 animatedNoticeView!.notice(nil)
             } else {
-                animatedNoticeView!.notice("Pointez la caméra vers un chat")
+                animatedNoticeView!.notice(NSLocalizedString("Point the camera at a cat", comment: "Cat detection notice"))
             }
         }
     }
@@ -112,7 +112,7 @@ class PreviewViewController: UIViewController, AVCapturePhotoCaptureDelegate, AV
                     if granted {
                         self.setupCaptureSession()
                     } else {
-                        let alert = UIAlertController(title: "Autorisation", message: "Veuillez autoriser l'utilisation de la caméra dans les paramètres.", preferredStyle: .alert)
+                        let alert = UIAlertController(title: NSLocalizedString("Required authorization", comment: "Title of missing permission dialog"), message: NSLocalizedString("Please allow the use of the camera in the settings.", comment: "Description of missing permision dialog"), preferredStyle: .alert)
                         alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: {
                             action in
                             UIApplication.shared.open(URL(string: UIApplication.openSettingsURLString)!)
@@ -207,12 +207,12 @@ class PreviewViewController: UIViewController, AVCapturePhotoCaptureDelegate, AV
             }
             
             if(boxs.count == 0) {
-                self.animatedNoticeView!.notice("Pointez la caméra vers un chat")
+                self.animatedNoticeView!.notice(NSLocalizedString("Point the camera at a cat", comment: "Cat detection notice"))
             } else {
-                self.animatedNoticeView!.notice("Il y a plus d'un chat")
+                self.animatedNoticeView!.notice(NSLocalizedString("There is more than one cat", comment: "Cat detection notice"))
             }
         } else {
-            self.animatedNoticeView!.notice("Maintenez un instant")
+            self.animatedNoticeView!.notice(NSLocalizedString("Hold on a moment", comment: "Cat detection notice"))
             self.successiveFramesWithOneCat += 1
         }
         
@@ -368,7 +368,7 @@ class PreviewViewController: UIViewController, AVCapturePhotoCaptureDelegate, AV
         super.viewDidAppear(animated)
         isViewActive = true
 
-        animatedNoticeView!.notice("Pointez la caméra vers un chat")
+        animatedNoticeView!.notice(NSLocalizedString("Point the camera at a cat", comment: "Cat detection notice"))
     }
         
     
@@ -401,11 +401,11 @@ extension PreviewViewController: UIImagePickerControllerDelegate, UINavigationCo
                     let title: String, message: String
                     
                     if boxs.count == 0 {
-                        title = "Aucun chat n'a été détecté sur cette photo"
-                        message = "Essayez une photo avec le chat de face et de bonnes conditions de luminosité."
+                        title = NSLocalizedString("No cat was detected in this photo", comment: "Pick from library: No cat detected error")
+                        message = NSLocalizedString("Try a photo with the cat from the front and good light conditions.", comment: "Pick from library: No cat detected error")
                     } else {
-                        title = "Plusieurs chats ont été détectés sur cette photo"
-                        message = "Veuillez sélectionner une photo avec un seul chat présent"
+                        title = NSLocalizedString("More than one cat has been detected in this photo", comment: "Pick from library: Multiple cats detected error")
+                        message = NSLocalizedString("Please select a photo with only one cat in it.", comment: "Pick from library: Multiple cats detected error")
                     }
                     
                     let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
