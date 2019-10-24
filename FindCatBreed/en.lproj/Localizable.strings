@@ -9,6 +9,7 @@
 "Point the camera at a cat" = "Point the camera at a cat";
 "There is more than one cat" = "There is more than one cat";
 "Hold on a moment" = "Hold on a moment";
+"Camera not available" = "Camera not available";
 
 "No cat was detected in this photo" = "No cat was detected in this photo";
 "Try a photo with the cat from the front and good light conditions." = "Try a photo with the cat from the front and good light conditions.";

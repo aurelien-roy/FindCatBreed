@@ -22,19 +22,20 @@ class PreviewViewController: UIViewController, AVCapturePhotoCaptureDelegate, AV
     
     @objc var cameraDevice : AVCaptureDevice?
     
+    var cameraUnavailable : Bool = false
     var videoOutput : AVCaptureVideoDataOutput!
     var statusBarHidden = false
     var orientation : AVCaptureVideoOrientation?
     var pickerController: UIImagePickerController?
     
-    var isViewActive : Bool = false
+    var isViewActive : Bool = false {
+        didSet {
+            self.resetNotice()
+        }
+    }
     var isUsingGallery : Bool = false {
         didSet {
-            if self.isUsingGallery {
-                animatedNoticeView!.notice(nil)
-            } else {
-                animatedNoticeView!.notice(NSLocalizedString("Point the camera at a cat", comment: "Cat detection notice"))
-            }
+            self.resetNotice()
         }
     }
     
@@ -142,15 +143,19 @@ class PreviewViewController: UIViewController, AVCapturePhotoCaptureDelegate, AV
         videoOutput.setSampleBufferDelegate(self, queue: DispatchQueue.global(qos: .userInteractive))
         
         // Setup camera device
-        cameraDevice = AVCaptureDevice.default(.builtInWideAngleCamera, for: .video, position: .back)
-        
-        if(cameraDevice!.isFocusModeSupported(.continuousAutoFocus)) {
-            try! cameraDevice!.lockForConfiguration()
-            cameraDevice!.focusMode = .continuousAutoFocus
-            cameraDevice!.unlockForConfiguration()
+        guard let cameraDevice = AVCaptureDevice.default(.builtInWideAngleCamera, for: .video, position: .back) else {
+            captureSession = nil
+            cameraUnavailable = true
+            return
         }
         
-        guard let cameraDeviceInput = try? AVCaptureDeviceInput(device: cameraDevice!),
+        if(cameraDevice.isFocusModeSupported(.continuousAutoFocus)) {
+            try! cameraDevice.lockForConfiguration()
+            cameraDevice.focusMode = .continuousAutoFocus
+            cameraDevice.unlockForConfiguration()
+        }
+        
+        guard let cameraDeviceInput = try? AVCaptureDeviceInput(device: cameraDevice),
             captureSession.canAddInput(cameraDeviceInput)
             else { fatalError("Can't add input") }
         
@@ -367,8 +372,16 @@ class PreviewViewController: UIViewController, AVCapturePhotoCaptureDelegate, AV
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         isViewActive = true
-
-        animatedNoticeView!.notice(NSLocalizedString("Point the camera at a cat", comment: "Cat detection notice"))
+    }
+    
+    func resetNotice() {
+        if isUsingGallery {
+            animatedNoticeView!.notice(nil)
+        } else if !cameraUnavailable {
+            animatedNoticeView!.notice(NSLocalizedString("Point the camera at a cat", comment: "Cat detection notice"))
+        } else {
+            animatedNoticeView!.notice(NSLocalizedString("Camera not available", comment: "Cat detection notice"))
+        }
     }
         
     

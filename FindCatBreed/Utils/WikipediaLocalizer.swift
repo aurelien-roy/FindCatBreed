@@ -21,6 +21,7 @@ class WikipediaLocalizer {
             completionHandler(
                 wikipediaURL(locale: "en", title: title)
             )
+            return
         }
         
         // Get all available languages from Wikipedia
