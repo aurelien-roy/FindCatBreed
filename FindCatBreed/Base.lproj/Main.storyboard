@@ -125,7 +125,7 @@
         <scene sceneID="rih-Do-1AH">
             <objects>
                 <tableViewController id="fCa-v1-sL4" customClass="ResultTableViewController" customModule="FindCatBreed" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="FmE-Ua-6Is">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="200" estimatedRowHeight="50" sectionHeaderHeight="28" sectionFooterHeight="28" id="FmE-Ua-6Is">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="524"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -138,13 +138,13 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ElG-do-ZQO">
-                                            <rect key="frame" x="16" y="11" width="256" height="0.0"/>
+                                            <rect key="frame" x="16" y="11" width="256" height="20"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="687-ew-W5Y" customClass="ConfidenceBar" customModule="FindCatBreed" customModuleProvider="target">
-                                            <rect key="frame" x="16" y="13" width="256" height="7"/>
+                                            <rect key="frame" x="16" y="35" width="256" height="7"/>
                                             <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="7" id="mDI-Gm-iR1"/>
@@ -154,9 +154,10 @@
                                     <constraints>
                                         <constraint firstItem="687-ew-W5Y" firstAttribute="trailing" secondItem="yNx-Ca-Wmv" secondAttribute="trailingMargin" id="60p-cJ-3H9"/>
                                         <constraint firstItem="ElG-do-ZQO" firstAttribute="leading" secondItem="yNx-Ca-Wmv" secondAttribute="leadingMargin" id="AWW-tG-ogs"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="687-ew-W5Y" secondAttribute="bottom" id="N95-b9-CG7"/>
                                         <constraint firstItem="ElG-do-ZQO" firstAttribute="trailing" secondItem="yNx-Ca-Wmv" secondAttribute="trailingMargin" id="ZEl-mU-D7U"/>
                                         <constraint firstItem="ElG-do-ZQO" firstAttribute="top" secondItem="yNx-Ca-Wmv" secondAttribute="topMargin" id="bai-qe-dba"/>
-                                        <constraint firstItem="687-ew-W5Y" firstAttribute="top" secondItem="ElG-do-ZQO" secondAttribute="bottom" constant="2" id="fbO-DO-XVu"/>
+                                        <constraint firstItem="687-ew-W5Y" firstAttribute="top" secondItem="ElG-do-ZQO" secondAttribute="bottom" constant="4" id="fbO-DO-XVu"/>
                                         <constraint firstItem="687-ew-W5Y" firstAttribute="leading" secondItem="yNx-Ca-Wmv" secondAttribute="leadingMargin" id="mZ4-66-i5V"/>
                                     </constraints>
                                 </tableViewCellContentView>
@@ -165,25 +166,24 @@
                                     <outlet property="confidenceBar" destination="687-ew-W5Y" id="fGA-ue-8Lx"/>
                                 </connections>
                             </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="PreviewCell" rowHeight="200" id="106-oU-nP0" customClass="PreviewCell" customModule="FindCatBreed" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="PreviewCell" rowHeight="200" id="106-oU-nP0" customClass="PreviewCell" customModule="FindCatBreed" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="81" width="320" height="200"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="106-oU-nP0" id="oXS-bK-wZH">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="200"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="eNz-IG-OM4">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="200"/>
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="10" verticalCompressionResistancePriority="10" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eNz-IG-OM4">
+                                            <rect key="frame" x="16" y="0.0" width="288" height="200"/>
                                             <constraints>
-                                                <constraint firstAttribute="width" secondItem="eNz-IG-OM4" secondAttribute="height" multiplier="8:5" id="8u8-4j-IHK"/>
+                                                <constraint firstAttribute="width" secondItem="eNz-IG-OM4" secondAttribute="height" multiplier="36:25" id="A8s-D6-lpS"/>
                                             </constraints>
                                         </imageView>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstAttribute="bottom" secondItem="eNz-IG-OM4" secondAttribute="bottom" id="3WD-6G-7nB"/>
-                                        <constraint firstAttribute="trailing" secondItem="eNz-IG-OM4" secondAttribute="trailing" id="O6j-Di-Ggv"/>
-                                        <constraint firstItem="eNz-IG-OM4" firstAttribute="leading" secondItem="oXS-bK-wZH" secondAttribute="leading" id="XyP-a2-fLv"/>
-                                        <constraint firstItem="eNz-IG-OM4" firstAttribute="top" secondItem="oXS-bK-wZH" secondAttribute="top" id="nYh-SU-RjJ"/>
+                                        <constraint firstItem="eNz-IG-OM4" firstAttribute="top" secondItem="oXS-bK-wZH" secondAttribute="top" id="LIF-kx-DAz"/>
+                                        <constraint firstAttribute="bottom" secondItem="eNz-IG-OM4" secondAttribute="bottom" id="bdM-1H-ARR"/>
+                                        <constraint firstItem="eNz-IG-OM4" firstAttribute="centerX" secondItem="oXS-bK-wZH" secondAttribute="centerX" id="pJk-Ck-T1R"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>

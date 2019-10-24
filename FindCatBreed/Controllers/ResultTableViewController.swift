@@ -80,7 +80,6 @@ class ConfidenceBar : UIView {
     let bar: UIView = UIView()
     
     func setup() {
-        debugPrint("setup")
         self.backgroundColor = .clear
         bar.layer.masksToBounds = true
         bar.layer.cornerRadius = 5
@@ -176,6 +175,14 @@ class ResultTableViewController: UITableViewController{
             cell.previewImage = previewImage
             
             return cell
+        }
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        if(indexPath.section == 1) {
+            return 53
+        } else {
+            return 200
         }
     }
     

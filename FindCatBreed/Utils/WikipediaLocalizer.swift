@@ -29,7 +29,6 @@ class WikipediaLocalizer {
             for lang in self.preferredLanguages {
                 
                 let lang = String(lang.split(separator: "-").first!)
-                debugPrint(lang)
                 
                 if let title = alternateLangDict[lang] {
                     completionHandler(
