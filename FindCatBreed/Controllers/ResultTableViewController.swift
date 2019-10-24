@@ -179,18 +179,32 @@ class ResultTableViewController: UITableViewController{
         }
     }
     
+    func handleNetworkError() {
+        
+        let alert = UIAlertController(title: NSLocalizedString("Network error", comment: "Network error dialog title"), message: NSLocalizedString("Check your internet connection to access Wikipedia.", comment: "Network error dialog description"), preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Ok", style: .default))
+        
+        DispatchQueue.main.async {
+            self.present(alert, animated: true, completion: nil)
+        }
+        
+    }
+    
     override func tableView(_ tableView: UITableView, accessoryButtonTappedForRowWith indexPath: IndexPath) {
         guard indexPath.section == 1 else {
             return
         }
         
         let breedCell = tableView.cellForRow(at: indexPath) as! BreedCell
-        let urlString = "https://wikipedia.org/wiki/" + breedCell.data!.breed.wikipediaSlug!
         
-        let webView = SFSafariViewController(url: URL(string: urlString)!)
-        
-        self.showDetailViewController(webView, sender: nil)
-        
+        WikipediaLocalizer.shared.localizeFromEnglish(title: breedCell.data!.breed.wikipediaSlug!, errorHandler: handleNetworkError) { url in
+            
+            let webView = SFSafariViewController(url: url)
+            
+            DispatchQueue.main.async {
+                self.showDetailViewController(webView, sender: nil)
+            }
+        }
     }
     
 }

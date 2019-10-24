@@ -20,6 +20,7 @@
 		0D5F220E2332DA75003A8B4A /* cat_database.csv in Resources */ = {isa = PBXBuildFile; fileRef = 0D5F220D2332DA75003A8B4A /* cat_database.csv */; };
 		0D65AE30232E381F00A65020 /* CatBreedClassifier.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 0D65AE2F232E381F00A65020 /* CatBreedClassifier.mlmodel */; };
 		0DCCD1AD2241DD4F00A1BE39 /* PreviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DCCD1AC2241DD4E00A1BE39 /* PreviewViewController.swift */; };
+		0DDBAB252361A6BC000EA9F8 /* WikipediaLocalizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DDBAB242361A6BC000EA9F8 /* WikipediaLocalizer.swift */; };
 		0DEC72FC2340C16E0010968A /* PaddingLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DEC72FB2340C16E0010968A /* PaddingLabel.swift */; };
 		0DEC73022340D7180010968A /* AnimatedNoticeFrame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DEC73012340D7180010968A /* AnimatedNoticeFrame.swift */; };
 		0DF1D7A42248467B0069F629 /* ResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DF1D7A32248467B0069F629 /* ResultViewController.swift */; };
@@ -45,6 +46,7 @@
 		0D5F220D2332DA75003A8B4A /* cat_database.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = cat_database.csv; sourceTree = "<group>"; };
 		0D65AE2F232E381F00A65020 /* CatBreedClassifier.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = CatBreedClassifier.mlmodel; sourceTree = "<group>"; };
 		0DCCD1AC2241DD4E00A1BE39 /* PreviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewViewController.swift; sourceTree = "<group>"; };
+		0DDBAB242361A6BC000EA9F8 /* WikipediaLocalizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WikipediaLocalizer.swift; sourceTree = "<group>"; };
 		0DEC72FB2340C16E0010968A /* PaddingLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaddingLabel.swift; sourceTree = "<group>"; };
 		0DEC73012340D7180010968A /* AnimatedNoticeFrame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimatedNoticeFrame.swift; sourceTree = "<group>"; };
 		0DF1D7A32248467B0069F629 /* ResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultViewController.swift; sourceTree = "<group>"; };
@@ -82,6 +84,7 @@
 		0D1D21AF2235F73100847B0E /* FindCatBreed */ = {
 			isa = PBXGroup;
 			children = (
+				0DDBAB232361A649000EA9F8 /* Utils */,
 				0D41A4A0235E29BC002FC1CF /* Ressources */,
 				0D1D21B42235F73100847B0E /* Main.storyboard */,
 				0DEC73002340C58E0010968A /* CoreML */,
@@ -104,6 +107,14 @@
 				0D65AE2F232E381F00A65020 /* CatBreedClassifier.mlmodel */,
 			);
 			path = Ressources;
+			sourceTree = "<group>";
+		};
+		0DDBAB232361A649000EA9F8 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				0DDBAB242361A6BC000EA9F8 /* WikipediaLocalizer.swift */,
+			);
+			path = Utils;
 			sourceTree = "<group>";
 		};
 		0DEC72FD2340C54F0010968A /* Views */ = {
@@ -227,6 +238,7 @@
 				0D5F220A2332CC0F003A8B4A /* BreedDatabase.swift in Sources */,
 				0DEC73022340D7180010968A /* AnimatedNoticeFrame.swift in Sources */,
 				0D50C0CA233BCBEE00E70495 /* CatAnalyzer.swift in Sources */,
+				0DDBAB252361A6BC000EA9F8 /* WikipediaLocalizer.swift in Sources */,
 				0D34490C223C48B1001A6AF2 /* PreviewView.swift in Sources */,
 				0D65AE30232E381F00A65020 /* CatBreedClassifier.mlmodel in Sources */,
 				0DCCD1AD2241DD4F00A1BE39 /* PreviewViewController.swift in Sources */,
