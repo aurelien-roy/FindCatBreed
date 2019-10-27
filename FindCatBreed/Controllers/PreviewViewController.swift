@@ -172,7 +172,11 @@ class PreviewViewController: UIViewController, AVCapturePhotoCaptureDelegate, AV
         previewView.videoPreviewLayer.session = captureSession
         previewView.videoPreviewLayer.videoGravity = .resizeAspectFill
         
+        setPreviewLayerOrientation()
+        
         captureSession.startRunning()
+        
+        
     }
 
     
@@ -314,6 +318,10 @@ class PreviewViewController: UIViewController, AVCapturePhotoCaptureDelegate, AV
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransition(to: size, with: coordinator)
         
+        setPreviewLayerOrientation()
+    }
+    
+    func setPreviewLayerOrientation() {
         if let videoPreviewLayerConnection = previewView.videoPreviewLayer.connection {
             let deviceOrientation = UIDevice.current.orientation
             let videoOrientation = transformOrientation(orientation: deviceOrientation)
@@ -328,7 +336,7 @@ class PreviewViewController: UIViewController, AVCapturePhotoCaptureDelegate, AV
         case .landscapeRight:
             return .landscapeLeft
         case .portraitUpsideDown:
-            return .portrait
+            return .portraitUpsideDown
         default:
             return .portrait
         }
