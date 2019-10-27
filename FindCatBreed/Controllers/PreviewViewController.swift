@@ -104,14 +104,18 @@ class PreviewViewController: UIViewController, AVCapturePhotoCaptureDelegate, AV
             case .notDetermined: // The user has not yet been asked for camera access.
                 AVCaptureDevice.requestAccess(for: .video) { granted in
                     if granted {
-                        self.setupCaptureSession()
+                        DispatchQueue.main.async {
+                            self.setupCaptureSession()
+                        }
                     }
                 }
                 
             case .denied: // The user has previously denied access.
                 AVCaptureDevice.requestAccess(for: .video) { granted in
                     if granted {
-                        self.setupCaptureSession()
+                        DispatchQueue.main.async {
+                            self.setupCaptureSession()
+                        }
                     } else {
                         let alert = UIAlertController(title: NSLocalizedString("Required authorization", comment: "Title of missing permission dialog"), message: NSLocalizedString("Please allow the use of the camera in the settings.", comment: "Description of missing permision dialog"), preferredStyle: .alert)
                         alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: {
@@ -164,9 +168,7 @@ class PreviewViewController: UIViewController, AVCapturePhotoCaptureDelegate, AV
         captureSession.addInput(cameraDeviceInput)
         captureSession.sessionPreset = .hd1280x720
         captureSession.addOutput(videoOutput)
-        
         captureSession.commitConfiguration()
-        
         previewView.videoPreviewLayer.session = captureSession
         previewView.videoPreviewLayer.videoGravity = .resizeAspectFill
         
@@ -176,12 +178,15 @@ class PreviewViewController: UIViewController, AVCapturePhotoCaptureDelegate, AV
     
     func captureOutput(_ output: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
         
+        //connection.videoOrientation = .portraitUpsideDown
+        debugPrint(connection.videoOrientation.rawValue)
+        
         guard !isUsingGallery && isViewActive else {
             return
         }
         
         let imgbuffer = CMSampleBufferGetImageBuffer(sampleBuffer)
-        connection.videoOrientation = .portrait
+        connection.videoOrientation = transformOrientation(orientation: UIDevice.current.orientation)
         
         let image = CIImage(cvImageBuffer: imgbuffer!)
         let size = CVImageBufferGetEncodedSize(imgbuffer!)
@@ -311,7 +316,8 @@ class PreviewViewController: UIViewController, AVCapturePhotoCaptureDelegate, AV
         
         if let videoPreviewLayerConnection = previewView.videoPreviewLayer.connection {
             let deviceOrientation = UIDevice.current.orientation
-            videoPreviewLayerConnection.videoOrientation = transformOrientation(orientation: deviceOrientation)
+            let videoOrientation = transformOrientation(orientation: deviceOrientation)
+            videoPreviewLayerConnection.videoOrientation = videoOrientation
         }
     }
     
