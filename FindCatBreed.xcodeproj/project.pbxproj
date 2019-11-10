@@ -14,6 +14,7 @@
 		0D34490C223C48B1001A6AF2 /* PreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D34490B223C48B1001A6AF2 /* PreviewView.swift */; };
 		0D3B4E31235FA52F005640EC /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0D3B4E2F235FA52F005640EC /* Localizable.strings */; };
 		0D50C0CA233BCBEE00E70495 /* CatAnalyzer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D50C0C9233BCBEE00E70495 /* CatAnalyzer.swift */; };
+		0D5CDBE92378292F00A39890 /* AppStoreHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D5CDBE82378292F00A39890 /* AppStoreHelper.swift */; };
 		0D5F220523322D9C003A8B4A /* ResultTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D5F220423322D9C003A8B4A /* ResultTableViewController.swift */; };
 		0D5F22082332CA50003A8B4A /* CSV in Frameworks */ = {isa = PBXBuildFile; productRef = 0D5F22072332CA50003A8B4A /* CSV */; };
 		0D5F220A2332CC0F003A8B4A /* BreedDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D5F22092332CC0F003A8B4A /* BreedDatabase.swift */; };
@@ -41,6 +42,7 @@
 		0D3B4E35235FA627005640EC /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Localizable.strings; sourceTree = "<group>"; };
 		0D41A4A1235E67BD002FC1CF /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		0D50C0C9233BCBEE00E70495 /* CatAnalyzer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatAnalyzer.swift; sourceTree = "<group>"; };
+		0D5CDBE82378292F00A39890 /* AppStoreHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppStoreHelper.swift; sourceTree = "<group>"; };
 		0D5F220423322D9C003A8B4A /* ResultTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultTableViewController.swift; sourceTree = "<group>"; };
 		0D5F22092332CC0F003A8B4A /* BreedDatabase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BreedDatabase.swift; sourceTree = "<group>"; };
 		0D5F220D2332DA75003A8B4A /* cat_database.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = cat_database.csv; sourceTree = "<group>"; };
@@ -113,6 +115,7 @@
 			isa = PBXGroup;
 			children = (
 				0DDBAB242361A6BC000EA9F8 /* WikipediaLocalizer.swift */,
+				0D5CDBE82378292F00A39890 /* AppStoreHelper.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -235,6 +238,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0D1D21B12235F73100847B0E /* AppDelegate.swift in Sources */,
+				0D5CDBE92378292F00A39890 /* AppStoreHelper.swift in Sources */,
 				0D5F220A2332CC0F003A8B4A /* BreedDatabase.swift in Sources */,
 				0DEC73022340D7180010968A /* AnimatedNoticeFrame.swift in Sources */,
 				0D50C0CA233BCBEE00E70495 /* CatAnalyzer.swift in Sources */,

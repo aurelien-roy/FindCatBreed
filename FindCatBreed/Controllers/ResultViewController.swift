@@ -30,6 +30,12 @@ class ResultViewController : UIViewController{
         resultTableController.populate(results: filterResults(results), image: image)
     }
     
+    override func viewDidDisappear(_ animated: Bool) {
+        if isMovingFromParent {
+            AppStoreHelper.shared.countWorkflowEnd()
+        }
+    }
+    
     func filterResults(_ results: CatAnalyzer.ClassificationResult) -> CatAnalyzer.ClassificationResult {
         let nbBreeds = Float(results.count)
         

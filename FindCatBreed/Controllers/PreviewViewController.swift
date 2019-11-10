@@ -182,9 +182,6 @@ class PreviewViewController: UIViewController, AVCapturePhotoCaptureDelegate, AV
     
     func captureOutput(_ output: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
         
-        //connection.videoOrientation = .portraitUpsideDown
-        debugPrint(connection.videoOrientation.rawValue)
-        
         guard !isUsingGallery && isViewActive else {
             return
         }

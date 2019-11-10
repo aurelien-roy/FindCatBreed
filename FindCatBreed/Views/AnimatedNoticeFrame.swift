@@ -61,9 +61,6 @@ class AnimatedNoticeFrame: UIView {
         
         addSubview(label)
         
-        debugPrint("frame: \(label.frame)")
-        debugPrint("bound: \(label.bounds)")
-        
         label.bottomInset = 10
         label.topInset = 10
         label.leftInset = 20
