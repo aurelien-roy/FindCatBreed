@@ -1,9 +1,13 @@
 # Find Cat Breed
 
-<img align="left" width="128" height="128" src="docs/img/app_icon.png">
-Find Cat Breed is an iOS 13+ app which let you find the breed of a cat by pointing your device camera on it.
+<img align="left" width="96" height="96" src="docs/img/app_icon.png">
+Find Cat Breed is an iOS app which let you find the breed of a cat by pointing your device camera on it.
 
-[<img width="180" src="docs/img/app_store.png">](https://apps.apple.com/us/app/find-cat-breed/id1484880085)
+<br>
+
+[<img width="120" src="docs/img/app_store.png">](https://apps.apple.com/us/app/find-cat-breed/id1484880085)
+
+<br>
 
 ## App demonstration
 
